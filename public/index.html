@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eChocolat Catalogue</title>
+</head>
+<body>
+    <h1>eChocolat Catalogue</h1>
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById('app');
+
+        fetch("http://localhost:8080/api/catalogue")
+        .then(response => response.json())
+        .then(articles => createArticlesTable(articles))
+        .catch(err => console.error(err));
+
+        function createArticlesTable(articles) {
+            console.log(articles)
+            const table = document.createElement('table');
+            const trHead = document.createElement('tr');
+            const thName = document.createElement('th');
+            thName.innerText = "Nom";
+            const thDescription = document.createElement('th');
+            thDescription.innerText = "Description";
+            const thPrice = document.createElement('th');
+            thPrice.innerText = 'Prix';
+            trHead.append(thName, thDescription, thPrice);
+            table.append(trHead);
+            app.append(table);
+            articles.forEach(article => {
+                console.log(article);
+                const tr = document.createElement('tr');
+                const tdName = document.createElement('td');
+                tdName.innerText = article.name;
+                const tdDescription = document.createElement('td');
+                tdDescription.innerText = article.description;
+                const tdPrice = document.createElement('td');
+                tdPrice.innerText = article.price;
+                tr.append(tdName, tdDescription, tdPrice);
+                table.append(tr);
+            });
+        }
+    </script>
+</body>
+</html>
