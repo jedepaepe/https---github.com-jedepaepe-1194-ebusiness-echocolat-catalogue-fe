@@ -23,11 +23,15 @@
             const trHead = document.createElement('tr');
             const thName = document.createElement('th');
             thName.innerText = "Nom";
+            const thLabel = document.createElement('th');
+            thLabel.innerText = 'Label';
             const thDescription = document.createElement('th');
             thDescription.innerText = "Description";
             const thPrice = document.createElement('th');
             thPrice.innerText = 'Prix';
-            trHead.append(thName, thDescription, thPrice);
+            const thPriceReduction = document.createElement('th');
+            thPriceReduction.innerText = 'Réduction'
+            trHead.append(thLabel, thName, thDescription, thPrice, thPriceReduction);
             table.append(trHead);
             app.append(table);
             articles.forEach(article => {
@@ -39,7 +43,11 @@
                 tdDescription.innerText = article.description;
                 const tdPrice = document.createElement('td');
                 tdPrice.innerText = article.price;
-                tr.append(tdName, tdDescription, tdPrice);
+                const tdLabel = document.createElement('td');
+                tdLabel.innerText = article.label;
+                const tdPriceReduction = document.createElement('td');
+                tdPriceReduction.innerText = article.priceReduction;
+                tr.append(tdLabel, tdName, tdDescription, tdPrice, tdPriceReduction);
                 table.append(tr);
             });
         }
